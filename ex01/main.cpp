@@ -6,11 +6,12 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 18:31:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/10/14 18:45:59 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:45:46 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main (void)
 {
@@ -18,12 +19,9 @@ int main (void)
 	{
 		Bureaucrat *b1 = new Bureaucrat("Bulbasaur", 1);
 		b1->decrementGrade();
-		std::cout << *b1 << std::endl;
-		Bureaucrat *b3 = new Bureaucrat();
-		b3 = b1;
-		Bureaucrat *b5 = new Bureaucrat(*b1);
-		Bureaucrat *b2 = new Bureaucrat("Arceus", 0);
-		Bureaucrat *b4 = new Bureaucrat("Mew", 151);
+		
+		Form *f1 = new Form("attack", 3, 3);
+		b1->signForm(*f1);
 		
 	}
 	catch(const std::exception &e)

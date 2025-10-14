@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:49:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/10/13 18:41:20 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:48:03 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ class Bureaucrat
 		Bureaucrat &operator=(const Bureaucrat &copy);
 		~Bureaucrat();
 
-		std::string getName();
-		int getGrade();
+		std::string getName() const;
+		int getGrade() const;
 
 		void incrementGrade();
 		void decrementGrade();
@@ -43,5 +43,7 @@ class Bureaucrat
 				const char *what() const noexcept;
 		};
 };
+
+std::ostream &operator<<(std::ostream &out, Bureaucrat const &num);
 
 #endif
