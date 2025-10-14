@@ -6,30 +6,21 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 18:31:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/10/14 19:23:18 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:59:22 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
+
 
 int main (void)
 {
+	std::srand(std::time(0));
+
 	try
 	{
-		Bureaucrat *b1 = new Bureaucrat("Bulbasaur", 1);
-		b1->decrementGrade();
-		std::cout << *b1 << std::endl;
-		Bureaucrat *b3 = new Bureaucrat();
-		b3 = b1;
-		Bureaucrat *b5 = new Bureaucrat(*b1);
-		Bureaucrat *b2 = new Bureaucrat("Arceus", 0);
-		Bureaucrat *b4 = new Bureaucrat("Mew", 151);
 
-		delete (b1);
-		delete (b2);
-		delete (b3);
-		delete (b4);
-		delete (b5);		
 	}
 	catch(const std::exception &e)
 	{
