@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 19:01:33 by penpalac          #+#    #+#             */
-/*   Updated: 2025/10/14 19:03:28 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:12:37 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,21 @@
 
 AForm::AForm() : 
 	_name("default"), _signed(false), _gradeIn(150), _gradeExec(150) {
-	std::cout << "Defaulr constructor called" << std::endl;
+	std::cout << "Default AForm constructor called" << std::endl;
 };
 
 AForm::AForm(const std::string name, int gradeIn, int gradeExec): 
 	_name(name), _signed(false), _gradeIn(gradeIn), _gradeExec(gradeExec) {
-	std::cout << "Constructor called" << std::endl;
+		if (gradeIn > 150 || gradeExec > 150)
+			throw (AForm::GradeTooLowException());
+		if (gradeIn < 1 || gradeExec < 1)
+			throw (AForm::GradeTooHighException());
+	std::cout << "AForm constructor called" << std::endl;
 };
 
 AForm::AForm(const AForm &copy):
 	_name(copy._name), _signed(copy._signed), _gradeIn(copy._gradeIn), _gradeExec(copy._gradeExec) {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "AForm copy constructor called" << std::endl;
 };
 
 AForm &AForm::operator=(const AForm &copy){
@@ -33,12 +37,12 @@ AForm &AForm::operator=(const AForm &copy){
 	{
 		*this = copy;
 	}
-	std::cout << "Copy assigment called" << std::endl;
+	std::cout << "AForm copy assigment called" << std::endl;
 	return (*this);
 };
 
 AForm::~AForm() {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "AForm destructor called" << std::endl;
 };
 
 ///
@@ -78,7 +82,7 @@ void AForm::beSigned(const Bureaucrat &b) {
 	else
 	{
 		std::cout << b.getName() << " couldn't sign " << this->getName() << " because: " << std::endl;
-		throw(AForm::GradeTooLowException());
+		throw(Bureaucrat::GradeTooLowException());
 	}
 		
 };

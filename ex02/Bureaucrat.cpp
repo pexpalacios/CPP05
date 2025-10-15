@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:54:48 by penpalac          #+#    #+#             */
-/*   Updated: 2025/10/14 19:54:08 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:10:04 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ Bureaucrat::~Bureaucrat() {
 
 const char *Bureaucrat::GradeTooHighException::what() const noexcept
 {
-	return ("Grade invalid: bureaucrat's grade can't be above 1");
+	return ("Grade invalid: bureaucrat's grade too high");
 };
 
 const char *Bureaucrat::GradeTooLowException::what() const noexcept
 {
-	return ("Grade invalid: bureaucrat's grade can't be below 150");
+	return ("Grade invalid: bureaucrat's grade too low");
 };
 
 std::string Bureaucrat::getName() const
@@ -98,7 +98,8 @@ void Bureaucrat::executeForm(AForm const &form) const{
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << this->getName() << " couldn't execute " << form.getName() << ". Reason:" << std::endl;
+		std::cerr << this->getName() << " couldn't execute " << form.getName() <<
+			". Needed grade: " << form.getGradeExec() << ", Bureaucrat's grade: " << this->getGrade() << std::endl;
 		std::cerr << e.what() << std::endl;
 	}
 };
