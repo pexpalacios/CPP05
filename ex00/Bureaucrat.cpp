@@ -6,28 +6,44 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:54:48 by penpalac          #+#    #+#             */
-/*   Updated: 2025/10/14 18:45:56 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:02:30 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : name("defaultBureaucrat"), grade(150) {
+Bureaucrat::Bureaucrat() : _name("defaultBureaucrat"), _grade(150) {
+	if (this->_grade < 1)
+	{
+		std::cout << this->getName() << " can't be created: ";
+		throw(Bureaucrat::GradeTooHighException());
+	}
+	if (this->_grade > 150)
+	{
+		std::cout << this->getName() << " can't be created: ";
+		throw (Bureaucrat::GradeTooLowException());
+	}
 	std::cout << "Default bureaucrat with grade 150 created" << std::endl;
 };
 
-Bureaucrat::Bureaucrat(const std::string name, int grade) : name(name)
+Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 {
-	if (grade < 1)
+	this->_grade = grade;
+	if (this->_grade < 1)
+	{
+		std::cout << this->getName() << " can't be created: ";
 		throw(Bureaucrat::GradeTooHighException());
-	if (grade > 150)
-		throw(Bureaucrat::GradeTooLowException());
-	this->grade = grade;
-	std::cout << "Bureaucrat " << this->name << " with grade " << this->grade << " created" << std::endl;
+	}
+	if (this->_grade > 150)
+	{
+		std::cout << this->getName() << " can't be created: ";
+		throw (Bureaucrat::GradeTooLowException());
+	}
+	std::cout << "Bureaucrat " << this->_name << " with grade " << this->_grade << " created" << std::endl;
 };
 
-Bureaucrat::Bureaucrat(const Bureaucrat &copy): name(copy.name), grade(copy.grade) {
-	std::cout << "Copy bureaucrat " << this->name << " with grade " << this->grade << " created" << std::endl;
+Bureaucrat::Bureaucrat(const Bureaucrat &copy): _name(copy._name), _grade(copy._grade) {
+	std::cout << "Copy bureaucrat " << this->_name << " with grade " << this->_grade << " created" << std::endl;
 };
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy) {
@@ -35,50 +51,56 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy) {
 	{
 		*this = copy;
 	}
-	std::cout << "Operator assigned bureaucrat " << this->name << " with grade " << this->grade << " created" << std::endl;
+	std::cout << "Operator assigned bureaucrat " << this->_name << " with grade " << this->_grade << " created" << std::endl;
 	return (*this);
 };
 
 Bureaucrat::~Bureaucrat() {
-	std::cout << "Bureaucrat " << this->name << " with grade " << this->grade << " destroyed" << std::endl;
+	std::cout << "Bureaucrat " << this->_name << " with grade " << this->_grade << " destroyed" << std::endl;
 };
 
 ////////
 
 const char *Bureaucrat::GradeTooHighException::what() const noexcept
 {
-	return ("Grade invalid: bureaucrat's grade can't be above 1");
+	return ("bureaucrat's grade can't be above 1");
 };
 
 const char *Bureaucrat::GradeTooLowException::what() const noexcept
 {
-	return ("Grade invalid: bureaucrat's grade can't be below 150");
+	return ("bureaucrat's grade can't be below 150");
 };
 
 std::string Bureaucrat::getName() const
 {
-	return (this->name);	
+	return (this->_name);	
 };
 
 int Bureaucrat::getGrade() const
 {
-	return (this->grade);	
+	return (this->_grade);	
 };
 
 void Bureaucrat::decrementGrade()
 {
-	this->grade++;
-	if (grade > 150)
+	this->_grade++;
+	if (_grade > 150)
+	{
+		std::cout << "Can't decrement " << this->_name << "'s grade: ";
 		throw(Bureaucrat::GradeTooLowException());
-	std::cout << this->name << "'s grade has been decremented to " << this->grade << std::endl;	
+	}
+	std::cout << this->_name << "'s grade has been decremented to " << this->_grade << std::endl;	
 };
 
 void Bureaucrat::incrementGrade()
 {
-	this->grade--;
-	if (grade < 1)
+	this->_grade--;
+	if (_grade < 1)
+	{
+		std::cout << "Can't increment " << this->_name << "'s grade: ";
 		throw(Bureaucrat::GradeTooHighException());
-	std::cout << this->name << "'s grade has been incremented to " << this->grade << std::endl;
+	}
+	std::cout << this->_name << "'s grade has been incremented to " << this->_grade << std::endl;
 };
 
 std::ostream &operator<<(std::ostream &out, Bureaucrat const &obj)

@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:59:37 by penpalac          #+#    #+#             */
-/*   Updated: 2025/10/14 19:02:34 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/10/22 19:50:34 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,47 @@
 
 Form::Form() : 
 	_name("default"), _signed(false), _gradeIn(150), _gradeExec(150) {
-	std::cout << "Defaulr constructor called" << std::endl;
+	if (this->_gradeIn < 1 || this->_gradeExec < 1)
+	{
+		std::cout << this->getName() << " can't be made: ";
+		throw (Form::GradeTooHighException());
+	}
+	if (this->_gradeIn > 150 || this->_gradeExec > 150)
+	{
+		std::cout << this->getName() << " can't be made: ";
+		throw (Form::GradeTooLowException());
+	}
+	std::cout << "Form default constructor called" << std::endl;
 };
 
 Form::Form(const std::string name, int gradeIn, int gradeExec): 
 	_name(name), _signed(false), _gradeIn(gradeIn), _gradeExec(gradeExec) {
-	std::cout << "Constructor called" << std::endl;
+	if (this->_gradeIn < 1 || this->_gradeExec < 1)
+	{
+		std::cout << this->getName() << " can't be made: ";
+		throw (Form::GradeTooHighException());
+	}
+	if (this->_gradeIn > 150 || this->_gradeExec > 150)
+	{
+		std::cout << this->getName() << " can't be made: ";
+		throw (Form::GradeTooLowException());
+	}
+	std::cout << "Form constructor called" << std::endl;
 };
 
 Form::Form(const Form &copy):
 	_name(copy._name), _signed(copy._signed), _gradeIn(copy._gradeIn), _gradeExec(copy._gradeExec) {
-	std::cout << "Copy constructor called" << std::endl;
+	if (this->_gradeIn < 1 || this->_gradeExec < 1)
+	{
+		std::cout << this->getName() << " can't be made: ";
+		throw (Form::GradeTooHighException());
+	}
+	if (this->_gradeIn > 150 || this->_gradeExec > 150)
+	{
+		std::cout << this->getName() << " can't be made: ";
+		throw (Form::GradeTooLowException());
+	}
+	std::cout << "Form copy constructor called" << std::endl;
 };
 
 Form &Form::operator=(const Form &copy){
@@ -33,12 +63,12 @@ Form &Form::operator=(const Form &copy){
 	{
 		*this = copy;
 	}
-	std::cout << "Copy assigment called" << std::endl;
+	std::cout << "Form copy assigment called" << std::endl;
 	return (*this);
 };
 
 Form::~Form() {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "Form destructor called" << std::endl;
 };
 
 ///
@@ -61,12 +91,12 @@ int Form::getGradeExec() const {
 
 const char *Form::GradeTooHighException::what() const noexcept
 {
-	return ("Grade invalid: form's grade can't be above 1");
+	return ("form's grade too high");
 };
 
 const char *Form::GradeTooLowException::what() const noexcept
 {
-	return ("Grade invalid: form's grade can't be below 150");
+	return ("form's grade too low");
 };
 
 void Form::beSigned(const Bureaucrat &b) {
@@ -77,8 +107,8 @@ void Form::beSigned(const Bureaucrat &b) {
 	}
 	else
 	{
-		std::cout << b.getName() << " couldn't sign " << this->getName() << " because: " << std::endl;
-		throw(Form::GradeTooLowException());
+		std::cout << b.getName() << " couldn't sign " << this->getName() << ": ";
+		throw(Bureaucrat::GradeTooLowException());
 	}
 		
 };

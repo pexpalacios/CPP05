@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:49:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/10/14 16:48:03 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/10/22 19:15:37 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 class Bureaucrat
 {
 	private:
-		const std::string name;
-		int grade;
+		const std::string _name;
+		int _grade;
 	public:
 		Bureaucrat();
 		Bureaucrat(const std::string name, int grade);
