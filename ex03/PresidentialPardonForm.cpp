@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 19:14:29 by penpalac          #+#    #+#             */
-/*   Updated: 2025/10/15 15:16:02 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:16:50 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ PresidentialPardonForm::~PresidentialPardonForm(){
 
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
+	if (this->getSigned() == false)
+	{
+		std::cout << this->getName();
+		throw(AForm::FormNotSigned());
+	}
 	if (executor.getGrade() >= this->_reqExec)
 		throw(Bureaucrat::GradeTooLowException());
 	else

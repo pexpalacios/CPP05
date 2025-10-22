@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 18:31:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/10/15 15:19:38 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:15:35 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,23 @@ int main (void)
 	try
 	{
 		std::cout << "=== Constructors ===" << std::endl;
-		Bureaucrat *alto = new Bureaucrat("dios", 1);
+		Bureaucrat *alto = new Bureaucrat("Dios", 1);
 		Bureaucrat *medio = new Bureaucrat("pseudodios", 40);
-		Bureaucrat *bajo = new Bureaucrat("un tio", 150);
+		Bureaucrat *bajo = new Bureaucrat("Un tio", 150);
 
-		ShrubberyCreationForm form1("Shrubbery");
+		ShrubberyCreationForm form1("my");
 		RobotomyRequestForm form2("robototo");
-		PresidentialPardonForm form3("Steven");
+		PresidentialPardonForm form3("José");
+		PresidentialPardonForm form4("another president");
 		std::cout << std::endl;
+		form1.beSigned(*alto);
+		form2.beSigned(*alto);
+		form3.beSigned(*alto);
 		std::cout << "=== High grade ===" << std::endl;
 		alto->executeForm(form1);
 		alto->executeForm(form2);
 		alto->executeForm(form3);
+		alto->executeForm(form4);
 		std::cout << std::endl;
 		std::cout << "=== Medium grade ===" << std::endl;
 		medio->executeForm(form1);

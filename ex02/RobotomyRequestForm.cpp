@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 19:14:31 by penpalac          #+#    #+#             */
-/*   Updated: 2025/10/15 15:15:48 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:17:27 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ RobotomyRequestForm::~RobotomyRequestForm(){
 
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
+	if (this->getSigned() == false)
+	{
+		std::cout << this->getName();
+		throw(AForm::FormNotSigned());
+	}
 	if (executor.getGrade() >= this->_reqExec)
 		throw(Bureaucrat::GradeTooLowException());
 	else

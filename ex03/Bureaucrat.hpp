@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:49:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/10/14 19:44:22 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:03:33 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ class AForm;
 class Bureaucrat
 {
 	private:
-		const std::string name;
-		int grade;
+		const std::string _name;
+		int _grade;
 	public:
 		Bureaucrat();
 		Bureaucrat(const std::string name, int grade);
@@ -44,6 +44,7 @@ class Bureaucrat
 				const char *what() const noexcept;
 		};
 
+		void signForm(AForm &f);
 		void executeForm(AForm const &form) const;
 };
 
