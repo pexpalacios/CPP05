@@ -1,7 +1,7 @@
 # CPP05
 42 Milestone 5
 
-This module presents exceptions and the try and catch element.
+This module introduces exceptions and the try and catch element.
 
 ---
 - ex 00: Mommy, when I grow up, I want to be a bureaucrat!
