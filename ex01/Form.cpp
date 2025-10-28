@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:59:37 by penpalac          #+#    #+#             */
-/*   Updated: 2025/10/22 19:50:34 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/10/27 18:35:21 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,12 @@ int Form::getGradeExec() const {
 	return (this->_gradeExec);
 };
 
-const char *Form::GradeTooHighException::what() const noexcept
+const char *Form::GradeTooHighException::what() const throw()
 {
 	return ("form's grade too high");
 };
 
-const char *Form::GradeTooLowException::what() const noexcept
+const char *Form::GradeTooLowException::what() const throw()
 {
 	return ("form's grade too low");
 };

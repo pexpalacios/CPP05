@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:54:48 by penpalac          #+#    #+#             */
-/*   Updated: 2025/10/22 20:02:24 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/10/27 18:35:17 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ Bureaucrat::~Bureaucrat() {
 
 ////////
 
-const char *Bureaucrat::GradeTooHighException::what() const noexcept
+const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return ("bureaucrat's grade too high");
 };
 
-const char *Bureaucrat::GradeTooLowException::what() const noexcept
+const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return ("bureaucrat's grade too low");
 };

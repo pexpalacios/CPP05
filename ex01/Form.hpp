@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:37:01 by penpalac          #+#    #+#             */
-/*   Updated: 2025/10/14 18:45:32 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/10/27 18:35:22 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ public:
 	class GradeTooHighException : public std::exception
 	{
 	public:
-		const char *what() const noexcept;
+		const char *what() const throw();
 	};
 	class GradeTooLowException : public std::exception
 	{
 	public:
-		const char *what() const noexcept;
+		const char *what() const throw();
 	};
 
 	void beSigned(const Bureaucrat &b);
